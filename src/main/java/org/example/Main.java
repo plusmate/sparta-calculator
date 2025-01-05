@@ -10,64 +10,70 @@ public class Main {
         int operand_1;
         int operand_2;
         String operator;
+        String exitCalc = "";
 
-        while (true){
-            try {
-                System.out.print("첫 번째 숫자를 입력하세요: ");
-                operand_1 = sc.nextInt();
+        do {
+            while (true) {
+                try {
+                    System.out.print("첫 번째 숫자를 입력하세요: ");
+                    operand_1 = sc.nextInt();
 
-                if (operand_1 < 0){
-                    System.out.println("양수만 입력 가능합니다. 다시 입력하세요.");
-                    continue;
+                    if (operand_1 < 0) {
+                        System.out.println("양수만 입력 가능합니다. 다시 입력하세요.");
+                        continue;
+                    }
+
+                    sc.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("숫자만 입력받을 수 있습니다. 다시 입력하세요. ");
+                    sc.nextLine();
                 }
-
-                sc.nextLine();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("숫자만 입력받을 수 있습니다. 다시 입력하세요. ");
-                sc.nextLine();
             }
-        }
 
-        System.out.print("사칙연산 기호를 입력하세요: ");
-        operator = sc.nextLine();
-        while (!operatorCheck(operator)) {
-            System.out.print("'" + operator + "' 는 적절한 연산자가 아닙니다. +, -, *, / 중 하나를 입력하세요 : ");
+            System.out.print("사칙연산 기호를 입력하세요: ");
             operator = sc.nextLine();
-        }
-
-        while (true){
-            try {
-                System.out.print("두 번째 숫자를 입력하세요: ");
-                operand_2 = sc.nextInt();
-
-                if (operand_2 < 0){
-                    System.out.println("양수만 입력 가능합니다. 다시 입력하세요.");
-                    continue;
-                } else if (operand_2 == 0) {
-                    System.out.println(" 0으로는 나눌 수 없습니다. 다시 입력하세요.");
-                    continue;
-                }
-
-                sc.nextLine();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("숫자만 입력받을 수 있습니다. 다시 입력하세요. ");
-                sc.nextLine();
+            while (!operatorCheck(operator)) {
+                System.out.print("'" + operator + "' 는 적절한 연산자가 아닙니다. +, -, *, / 중 하나를 입력하세요 : ");
+                operator = sc.nextLine();
             }
-        }
 
-        if (operator.equals("+")) {
-            result = operand_1 + operand_2;
-        } else if (operator.equals("-")) {
-            result = operand_1 - operand_2;
-        } else if (operator.equals("*")) {
-            result = operand_1 * operand_2;
-        } else if (operator.equals("/")) {
-            result = operand_1 / operand_2;
-        }
+            while (true) {
+                try {
+                    System.out.print("두 번째 숫자를 입력하세요: ");
+                    operand_2 = sc.nextInt();
 
-        System.out.println("결과: " + result + " ( " + operand_1 + " " + operator + " " + operand_2 + " = " + result + " ) ");
+                    if (operand_2 < 0) {
+                        System.out.println("양수만 입력 가능합니다. 다시 입력하세요.");
+                        continue;
+                    } else if (operand_2 == 0) {
+                        System.out.println(" 0으로는 나눌 수 없습니다. 다시 입력하세요.");
+                        continue;
+                    }
+
+                    sc.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("숫자만 입력받을 수 있습니다. 다시 입력하세요. ");
+                    sc.nextLine();
+                }
+            }
+
+            if (operator.equals("+")) {
+                result = operand_1 + operand_2;
+            } else if (operator.equals("-")) {
+                result = operand_1 - operand_2;
+            } else if (operator.equals("*")) {
+                result = operand_1 * operand_2;
+            } else if (operator.equals("/")) {
+                result = operand_1 / operand_2;
+            }
+
+            System.out.println("결과: " + result +
+                    " ( " + operand_1 + " " + operator + " " + operand_2 + " = " + result + " ) ");
+            System.out.print("더 계산 시 아무거나 입력하세요. (exit 입력 시 종료) : ");
+            exitCalc = sc.nextLine();
+        } while (!exitCalc.equals("exit"));
     }
 
     private static boolean operatorCheck(String operator) {
