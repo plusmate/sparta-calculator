@@ -1,4 +1,4 @@
-package org.example;
+package org.example.lv2;
 
 import java.util.LinkedList;
 

@@ -1,13 +1,13 @@
-package org.example;
+package org.example.lv1;
+
+import org.example.lv2.Calculator;
 
 import java.util.InputMismatchException;
-import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Main {
+public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Calculator calculator = new Calculator();
         int result = 0;
         int num1;
         int num2;
@@ -61,36 +61,20 @@ public class Main {
                 }
             }
 
-//            if (operator.equals("+")) {
-//                result = num1 + num2;
-//            } else if (operator.equals("-")) {
-//                result = num1 - num2;
-//            } else if (operator.equals("*")) {
-//                result = num1 * num2;
-//            } else if (operator.equals("/")) {
-//                result = num1 / num2;
-//            }
-            result = calculator.calculate(num1, num2, operator);
+            if (operator.equals("+")) {
+                result = num1 + num2;
+            } else if (operator.equals("-")) {
+                result = num1 - num2;
+            } else if (operator.equals("*")) {
+                result = num1 * num2;
+            } else if (operator.equals("/")) {
+                result = num1 / num2;
+            }
 
             System.out.println("결과: " + result +
                     " ( " + num1 + " " + operator + " " + num2 + " = " + result + " ) ");
-            System.out.println();
 
-            while (true){
-                System.out.println("계산 기록");
-                System.out.println("==============================");
-                System.out.println(calculator.getResultList());
-                System.out.println("계산 기록을 삭제 하시겠습니까?( 첫 기록부터 삭제 / 삭제시 Y 입력 ) : ");
-
-                String isDelete = sc.nextLine();
-                if (isDelete.equalsIgnoreCase("Y")) {
-                    calculator.removeResult();
-                }else {
-                    break;
-                }
-            }
-
-            System.out.println("더 계산 시 아무거나 입력하세요. (exit 입력 시 종료 / edit 입력 시 계산 기록 편집) : ");
+            System.out.println("더 계산 시 아무거나 입력하세요. (exit 입력 시 종료 ) ");
             exitCalc = sc.nextLine();
         } while (!exitCalc.equals("exit"));
     }
